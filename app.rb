@@ -18,6 +18,11 @@ post("/recipes") do
   redirect('/recipes')
 end
 
+get("/recipes/:id") do
+  @recipe = Recipe.find(params[:id].to_i)
+  erb(:recipe)
+end
+
 get("/tags") do
   @tags = Tag.all
   erb(:tags)

@@ -1,0 +1,21 @@
+<h3><%= @recipe.name %></h3>
+
+<% if @recipe.ingredients != "" %>
+  <ul>
+    <% @recipe.ingredients.each do |ingredient| %>
+      <li><%= ingredient %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no ingredients yet</p>
+<% end %>
+
+<% if @recipe.istructions.any? %>
+  <ul>
+    <% @recipe.instructions.each do |instructions| %>
+      <li><%= instructions %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no instructions yet</p>
+<% end %>
