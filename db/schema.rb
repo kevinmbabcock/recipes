@@ -15,15 +15,15 @@ ActiveRecord::Schema.define(version: 20171213210833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "recipes", force: :cascade do |t|
-    t.string "name"
+  create_table "recipe_tags", force: :cascade do |t|
+    t.integer "recipe_id"
     t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "recipes_tags", force: :cascade do |t|
-    t.integer "recipe_id"
+  create_table "recipes", force: :cascade do |t|
+    t.string "name"
     t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
