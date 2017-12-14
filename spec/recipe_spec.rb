@@ -7,4 +7,7 @@ describe(Recipe) do
     test_recipe = Recipe.create({:name => "cheesecake", :tag_ids => [test_tag.id, test_tag1.id]})
     expect(test_recipe.tags).to(eq([test_tag, test_tag1]))
   end
+  # it("has many ingredients") do
+  #
+  # end
 end
