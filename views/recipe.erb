@@ -1,9 +1,10 @@
 <h3><%= @recipe.name %></h3>
 
 <% if @recipe.ingredients.any? %>
+  <p>Here are all the ingredients for this recipe</p>
   <ul>
     <% @recipe.ingredients.each do |ingredient| %>
-      <li><%= ingredient[0] %></li>
+      <li><%= ingredient["name"] %></li>
     <% end %>
   </ul>
 <% else %>
@@ -11,11 +12,33 @@
 <% end %>
 
 <% if @recipe.tags.any? %>
+  <p>Here are all the tags for this recipe</p>
   <ul>
     <% @recipe.tags.each do |tag| %>
-      <li><%= tag %></li>
+      <li><%= tag["name"] %></li>
     <% end %>
   </ul>
 <% else %>
   <p>There are no tags yet</p>
 <% end %>
+
+<form action="/recipes/<%= @recipe.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p><strong>Add ingredients:</strong></p>
+  <% @ingredients.each do |ingredient| %>
+    <div class="checkbox">
+      <label for="add_ingredients">
+        <input type="checkbox" name="ingredient_ids[]" value="<%= ingredient.id %>"><%= ingredient.name %><br>
+      </label>
+    </div>
+  <% end %>
+  <p><strong>Add tags:</strong></p>
+  <% @tags.each do |tag| %>
+    <div class="checkbox">
+      <label for="add_tags">
+        <input type="checkbox" name="tag_ids[]" value="<%= tag.id %>"><%= tag.name %><br>
+      </label>
+    </div>
+  <% end %>
+  <button type="submit">Submit</button>
+</form>

@@ -20,6 +20,22 @@ end
 
 get("/recipes/:id") do
   @recipe = Recipe.find(params[:id].to_i)
+  @ingredients = Ingredient.all
+  @tags = Tag.all
+  erb(:recipe)
+end
+
+patch("/recipes/:id") do
+  @recipe = Recipe.find(params[:id].to_i)
+  @ingredients = Ingredient.all
+  @tags = Tag.all
+  ingredient_ids = params[:ingredient_ids]
+
+  tag_ids = params[:tag_ids]
+
+  @recipe.update({:ingredient_ids => ingredient_ids, :tag_ids => tag_ids})
+  # binding.pry
+
   erb(:recipe)
 end
 
