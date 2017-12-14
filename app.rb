@@ -30,12 +30,18 @@ patch("/recipes/:id") do
   @ingredients = Ingredient.all
   @tags = Tag.all
   ingredient_ids = params[:ingredient_ids]
-
+  if ingredient_ids
+    @recipe.ingredients.each do |ingredient|
+      ingredient_ids.push(ingredient.id)
+    end
+  end
   tag_ids = params[:tag_ids]
-
+  if tag_ids
+    @recipe.tags.each do |tag|
+      tag_ids.push(tag.id)
+    end
+  end
   @recipe.update({:ingredient_ids => ingredient_ids, :tag_ids => tag_ids})
-  # binding.pry
-
   erb(:recipe)
 end
 

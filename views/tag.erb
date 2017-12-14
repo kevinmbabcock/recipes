@@ -3,7 +3,7 @@
 <% if @tag.recipes.any? %>
   <ul>
     <% @tag.recipes.each do |recipe| %>
-      <li><%= recipe %></li>
+      <li><%= recipe.name %></li>
     <% end %>
   </ul>
 <% else %>
