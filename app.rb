@@ -45,6 +45,22 @@ patch("/recipes/:id") do
   erb(:recipe)
 end
 
+get("/recipes/:id/edit") do
+  @recipe = Recipe.find(params[:id])
+  @ingredients = Ingredient.all
+  @tags = Tag.all
+  erb(:recipe_edit)
+end
+
+patch("/recipes/:id/edit") do
+  name = params.fetch("name")
+  @recipe = Recipe.find(params[:id].to_i)
+  @recipe.update({:name => name})
+  @ingredients = Ingredient.all
+  @tags = Tag.all
+  erb(:recipe)
+end
+
 get("/tags") do
   @tags = Tag.all
   erb(:tags)

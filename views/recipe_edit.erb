@@ -1,0 +1,12 @@
+<h3>Update <%= @recipe.name %></h3>
+
+<form action="/recipes/<%= @recipe.id %>/edit" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="name">Rename this recipe</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Update Recipe</button>
+</form>
+<form action="/recipes" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete Recipe</button>
+</form>
